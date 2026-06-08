@@ -1,0 +1,27 @@
+---
+title: "Projeto 1"
+format: revealjs
+embed-resources: true
+editor: visual
+execute:
+    echo: false
+  message: false
+  warning: false
+  embed-resources: true
+toc-title: "Projeto 1"
+lang: pt
+---
+
+## 
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+library(plotly)
+library(skimr)
+library(gt)
+```
+
+```{r}
+gt()
+```
