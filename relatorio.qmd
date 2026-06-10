@@ -1,8 +1,17 @@
 ---
-title: "Projeto 1"
-subtitle: "Análise exploratória de dados da relação entre o PIB e o crescimento de um país"
-format: revealjs
+title: "Relatório"
+author: "Pedro Guimarães"
+format:
+  html:
+    toc: true
+    code-copy: true
 embed-resources: true
+editor: source
+execute:
+  warning: false
+  embed-resources: true
+toc-title: "Relatório"
+lang: pt
 ---
 
 ```{r}
@@ -18,7 +27,7 @@ library(gt)
 #| echo: false
 setwd("C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados")
 
-df <- readRDS("table_fert.rds")
+df <- readRDS("tabela_com_3.rds")
 
 Anos <- names(df)
 pa <- as.numeric(c(df[3, ], df[2, ], df[1, ]))
@@ -113,21 +122,11 @@ ggplot(t1.n,
   ) -> box.1
 ```
 
-## As duas bases de dados usadas
+##
 
-Sobre os dados populacionais
+###
 
-```{r}
-#| echo: false
-
-```
-
-Sobre os dados obtidos no Banco Mundial
-
-```{r}
-#| echo: false
-
-```
+###
 
 ##
 
@@ -136,45 +135,18 @@ Sobre os dados obtidos no Banco Mundial
 ggplotly(linha)
 ```
 
-::: {style="font-size: 0.6em"}
--   A média da taxa de fertilidade global está caindo drasticamente a cada 5 anos;
-
--   Os países mais ricos tem taxa de fertilidade muito menor aos demais, isso pode ser devido à maior acesso à métodos contraceptivos;
-
--   A taxa de fertilidade em 2010 era igual ao nível de reposição, sendo 2.1;
-
--   A taxa de fertilidade em 2025 era igual á 1.7, indicando diminuição na população mundial no futuro.
-:::
-
-::: {style="font-size: 0.7em"}
-# Comparação da expectativa de vida nos anos de 2010 e 2025 em países ricos, emergentes e pobres
-:::
-
 ##
+
+###
 
 ```{r}
 #| echo: false
 ggplotly(box.1)
 ```
 
-::: {style="font-size: 0.65em"}
-Pode ser observado que no ano de 2010, somente os países mais ricos tem uma mediana de sua expectativa de vida perto de 80 anos, com a maioria dos países em geral tendo uma expectativa menor do que 75 anos.
-:::
-
-##
+###
 
 ```{r}
 #| echo: false
 ggplotly(box.4)
 ```
-
-::: {style="font-size: 0.65em"}
-Pode ser observado que no ano de 2025, a grande maioria dos países tem sua expectativa de vida maior do que 77 anos, e a mediana para os países mais ricos é de 82 anos, 2 a mais comparada com 2010.
-Isso é uma grande conquista desde 2010, quando a mediana para todos os grupos de países era significativamente menor do que em 2025.
-:::
-
-## Fontes dos dados
-
--   [Site do Banco Mundial](https://datacatalog.worldbank.org/search/dataset/0037798/global-economic-monitor) Onde os dados do PIB foram adquiridos.
-
--   [Site das Nações Unidas](https://data.un.org/) Onde os dados da taxa de crescimento e a taxa de fertilidade foram adquiridos.
