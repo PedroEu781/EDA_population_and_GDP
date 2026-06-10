@@ -1,12 +1,16 @@
 ---
 title: "Projeto 1"
+author: "Pedro Guimarães"
 subtitle: "Análise exploratória de dados da relação entre o PIB e o crescimento de um país"
-format: revealjs
-embed-resources: true
+format:
+  revealjs:
+    embed-resources: true
+execute:
+  warning: false
+  echo: false
 ---
 
 ```{r}
-#| echo: false
 library(tidyverse)
 library(ggthemes)
 library(plotly)
@@ -15,7 +19,6 @@ library(gt)
 ```
 
 ```{r}
-#| echo: false
 setwd("C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados")
 
 df <- readRDS("table_fert.rds")
@@ -49,7 +52,6 @@ ggplot(
 ```
 
 ```{r}
-#| echo: false
 setwd("C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados")
 tabela <- readRDS("tabelafinal.rds")
 
@@ -118,21 +120,18 @@ ggplot(t1.n,
 Sobre os dados populacionais
 
 ```{r}
-#| echo: false
 
 ```
 
 Sobre os dados obtidos no Banco Mundial
 
 ```{r}
-#| echo: false
 
 ```
 
 ##
 
 ```{r}
-#| echo: false
 ggplotly(linha)
 ```
 
@@ -153,24 +152,25 @@ ggplotly(linha)
 ##
 
 ```{r}
-#| echo: false
 ggplotly(box.1)
 ```
 
-::: {style="font-size: 0.65em"}
-Pode ser observado que no ano de 2010, somente os países mais ricos tem uma mediana de sua expectativa de vida perto de 80 anos, com a maioria dos países em geral tendo uma expectativa menor do que 75 anos.
+::: {style="font-size: 0.6em"}
+-   Somente os países mais ricos tem uma mediana de sua expectativa de vida perto de 80 anos;
+-   Mediana geral menor do que 75 anos.
 :::
 
 ##
 
 ```{r}
-#| echo: false
 ggplotly(box.4)
 ```
 
-::: {style="font-size: 0.65em"}
-Pode ser observado que no ano de 2025, a grande maioria dos países tem sua expectativa de vida maior do que 77 anos, e a mediana para os países mais ricos é de 82 anos, 2 a mais comparada com 2010.
-Isso é uma grande conquista desde 2010, quando a mediana para todos os grupos de países era significativamente menor do que em 2025.
+::: {style="font-size: 0.6em"}
+-   A mediana para os países mais ricos é de 82 anos, 2 a mais quando comparada com 2010;
+-   A maioria dos países tem sua expectativa de vida maior do que 77 anos.
+
+Isso é uma grande conquista quando comparamos à 2010, quando a mediana para todos os grupos de países era de 75 anos, menor do que a nova mediana de 77.5 anos em 2025.
 :::
 
 ## Fontes dos dados

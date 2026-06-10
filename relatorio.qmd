@@ -3,31 +3,26 @@ title: "Relatório"
 author: "Pedro Guimarães"
 format:
   html:
-    toc: true
-    code-copy: true
-embed-resources: true
+    embed-resources: true
+    theme: minty
 editor: source
 execute:
   warning: false
-  embed-resources: true
-toc-title: "Relatório"
+  echo: false
 lang: pt
 ---
 
 ```{r}
-#| echo: false
 library(tidyverse)
 library(ggthemes)
 library(plotly)
 library(skimr)
 library(gt)
 ```
-
 ```{r}
-#| echo: false
 setwd("C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados")
 
-df <- readRDS("tabela_com_3.rds")
+df <- readRDS("table_fert.rds")
 
 Anos <- names(df)
 pa <- as.numeric(c(df[3, ], df[2, ], df[1, ]))
@@ -53,12 +48,10 @@ ggplot(
     color = "Classificação do país"
   ) +
   scale_colour_manual(
-    values = c( "orange", "steelblue", "darkred")
+    values = c( "orange", "#253494", "#cc3333")
   ) -> linha
 ```
-
 ```{r}
-#| echo: false
 setwd("C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados")
 tabela <- readRDS("tabelafinal.rds")
 
@@ -122,31 +115,57 @@ ggplot(t1.n,
   ) -> box.1
 ```
 
-##
+# Análise exploratória de dados sobre a relação entre o PIB de um país e dados populacionais
+
+## Distribuição descritiva dos dados
 
 ###
 
 ###
 
-##
+## Comparação entre a taxa de fertilidade dos países
+
+Os países mais ricos e mais pobres nesse gráfico foram definido como os 10 mais ricos e 10 mais pobres da base de dados, como está demonstrado no mapa do ano de 2025.
+
+![](C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png)
 
 ```{r}
-#| echo: false
 ggplotly(linha)
 ```
 
-##
+### 
 
-###
+## Comparação da expectativa de vida dos países
+
+As faixas de países ricos, emergentes e pobres foram definidas como o primeiro, segundo e terceiro terço dos países quanto ao PIB bruto em cada um dos anos.
+
+### Expectativa de vida no ano de 2010
 
 ```{r}
-#| echo: false
 ggplotly(box.1)
 ```
 
-###
+-   Somente os países mais ricos tem uma mediana de sua expectativa de vida perto de 80 anos;
+-   Mediana geral menor do que 75 anos.
+
+### Expectativa de vida no ano de 2025
 
 ```{r}
-#| echo: false
 ggplotly(box.4)
+
 ```
+
+-   A mediana para os países mais ricos é de 82 anos, 2 a mais quando comparada com 2010;
+-   A maioria dos países tem sua expectativa de vida maior do que 77 anos.
+
+### Conclusões
+
+Ambas as teses definidas foram provadas como verdadeiras, com os países mais ricos tendo expectativa de vida maior do que os demais e a mediana da expectativa de vida mundial aumentou em aproximadamente 2 anos durante os 15 anos estudados.
+
+O último ponto é uma grande conquista, pelo motivo de que isso demonstra melhora nas condições de vida, principalmente nos países mais pobres, que aumentaram sua taxa em 3.5 anos, o maior aumento dos três grupos.
+
+## Fontes dos dados
+
+-   [Site do Banco Mundial](https://datacatalog.worldbank.org/search/dataset/0037798/global-economic-monitor) Onde os dados do PIB foram adquiridos.
+
+-   [Site das Nações Unidas](https://data.un.org/) Onde os dados da taxa de crescimento e a taxa de fertilidade foram adquiridos.
