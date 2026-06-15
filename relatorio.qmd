@@ -114,14 +114,52 @@ ggplot(t1.n,
     values = c("darkgreen", "steelblue", "darkred")
   ) -> box.1
 ```
+```{r}
+t2 <- tabela |>
+  filter(Year == "2015")
+t3 <- tabela |>
+  filter(Year == "2020")
+
+media <- data.frame(mean(unlist(t1[, 4])), mean(unlist(t2[, 4])),
+                    mean(unlist(t3[, 4])), mean(unlist(t4[, 4])))
+media <- rename(media, "2010" = "mean.unlist.t1...4...",
+                "2015" = "mean.unlist.t2...4...",
+                "2020" = "mean.unlist.t3...4...",
+                "2025" = "mean.unlist.t4...4...")
+media <- signif(media, digits = 3)
+
+mediana <- data.frame(median(unlist(t1[, 4])), median(unlist(t2[, 4])),
+                    median(unlist(t3[, 4])), median(unlist(t4[, 4])))
+mediana <- rename(mediana, "2010" = "median.unlist.t1...4...",
+                  "2015" = "median.unlist.t2...4...",
+                  "2020" = "median.unlist.t3...4...",
+                  "2025" = "median.unlist.t4...4...")
+mediana <- signif(mediana, digits = 3)
+
+desvio <- data.frame(sd(unlist(t1[, 4])), sd(unlist(t2[, 4])),
+                    sd(unlist(t3[, 4])), sd(unlist(t4[, 4])))
+desvio <- rename(desvio, "2010" = "sd.unlist.t1...4...",
+                 "2015" = "sd.unlist.t2...4...",
+                 "2020" = "sd.unlist.t3...4...",
+                 "2025" = "sd.unlist.t4...4...")
+desvio <- signif(desvio, digits = 2)
+
+graf <- data.frame(Anos, t(media), t(mediana), t(desvio))
+graf <- rename(graf, "Ano da pesquisa" = "Anos", "Média" = "t.media.",
+               Mediana = "t.mediana.", "Desvio padrão" = "t.desvio.")
+```
+
 
 # Análise exploratória de dados sobre a relação entre o PIB de um país e dados populacionais
 
 ## Distribuição descritiva dos dados
 
-###
+dados do boxplot para cada um dos 4 anos
 
-###
+```{r}
+gt(graf)
+```
+
 
 ## Comparação entre a taxa de fertilidade dos países
 
@@ -132,6 +170,14 @@ Os países mais ricos e mais pobres nesse gráfico foram definido como os 10 mai
 ```{r}
 ggplotly(linha)
 ```
+
+-   A média da taxa de fertilidade global está caindo drasticamente a cada 5 anos;
+
+-   Os países mais ricos tem taxa de fertilidade muito menor aos demais, isso pode ser devido à maior acesso à métodos contraceptivos;
+
+-   A taxa de fertilidade em 2010 era igual ao nível de reposição, sendo 2.1;
+
+-   A taxa de fertilidade em 2025 era igual á 1.7, indicando diminuição na população mundial no futuro.
 
 ### 
 
@@ -160,7 +206,9 @@ ggplotly(box.4)
 
 ### Conclusões
 
-Ambas as teses definidas foram provadas como verdadeiras, com os países mais ricos tendo expectativa de vida maior do que os demais e a mediana da expectativa de vida mundial aumentou em aproximadamente 2 anos durante os 15 anos estudados.
+-   O PIB de um país tem correlação positiva com sua expectativa de vida;
+
+-   A mediana da expectativa de vida mundial aumentou globalmente durante os 15 anos do estudo.
 
 O último ponto é uma grande conquista, pelo motivo de que isso demonstra melhora nas condições de vida, principalmente nos países mais pobres, que aumentaram sua taxa em 3.5 anos, o maior aumento dos três grupos.
 

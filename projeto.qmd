@@ -5,6 +5,10 @@ subtitle: "Análise exploratória de dados da relação entre o PIB e o crescime
 format:
   revealjs:
     embed-resources: true
+title-slide-attributes: 
+  data-background-image: (C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png)
+  data-background-size: cover
+  data-background-opacity: "0.3"
 execute:
   warning: false
   echo: false
@@ -17,7 +21,6 @@ library(plotly)
 library(skimr)
 library(gt)
 ```
-
 ```{r}
 setwd("C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados")
 
@@ -50,7 +53,6 @@ ggplot(
     values = c( "orange", "steelblue", "darkred")
   ) -> linha
 ```
-
 ```{r}
 setwd("C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados")
 tabela <- readRDS("tabelafinal.rds")
@@ -129,7 +131,11 @@ Sobre os dados obtidos no Banco Mundial
 
 ```
 
-##
+::: {style="font-size: 0.8em"}
+# Análise da taxa de fertilidade global nos anos de 2010, 2015, 2020 e 2025
+:::
+
+## 
 
 ```{r}
 ggplotly(linha)
@@ -145,11 +151,21 @@ ggplotly(linha)
 -   A taxa de fertilidade em 2025 era igual á 1.7, indicando diminuição na população mundial no futuro.
 :::
 
+## 
+
+![](C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png)
+
+::: {style="font-size: 0.6em"}
+-   Representação dos 10 países mais ricos e mais pobres no ano de 2025, que são os mesmos utilizados no gráfico anterior.
+
+-   Pode ser observado que os países mais ricos se concentram no hemisfério Norte.
+:::
+
 ::: {style="font-size: 0.7em"}
 # Comparação da expectativa de vida nos anos de 2010 e 2025 em países ricos, emergentes e pobres
 :::
 
-##
+## 
 
 ```{r}
 ggplotly(box.1)
@@ -160,7 +176,7 @@ ggplotly(box.1)
 -   Mediana geral menor do que 75 anos.
 :::
 
-##
+## 
 
 ```{r}
 ggplotly(box.4)
@@ -178,3 +194,4 @@ Isso é uma grande conquista quando comparamos à 2010, quando a mediana para to
 -   [Site do Banco Mundial](https://datacatalog.worldbank.org/search/dataset/0037798/global-economic-monitor) Onde os dados do PIB foram adquiridos.
 
 -   [Site das Nações Unidas](https://data.un.org/) Onde os dados da taxa de crescimento e a taxa de fertilidade foram adquiridos.
+
