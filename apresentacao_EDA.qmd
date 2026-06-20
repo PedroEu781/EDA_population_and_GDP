@@ -1,14 +1,9 @@
 ---
-title: "Projeto 1"
-author: "Pedro Guimarães"
-subtitle: "Análise exploratória de dados da relação entre o PIB e o crescimento de um país"
+title: "Análise exploratória da relação entre o PIB e os dados populacionais de um país"
+author: "Pedro Guimarães Medeiros"
 format:
   revealjs:
     embed-resources: true
-title-slide-attributes: 
-  data-background-image: (C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png)
-  data-background-size: cover
-  data-background-opacity: "0.3"
 execute:
   warning: false
   echo: false
@@ -18,7 +13,6 @@ execute:
 library(tidyverse)
 library(ggthemes)
 library(plotly)
-library(skimr)
 library(gt)
 ```
 ```{r}
@@ -116,20 +110,110 @@ ggplot(t1.n,
     values = c("darkgreen", "steelblue", "darkred")
   ) -> box.1
 ```
+```{r}
+t2 <- tabela |>
+  filter(Year == "2015")
+t3 <- tabela |>
+  filter(Year == "2020")
+
+media <- data.frame(mean(unlist(t1[, 4])), mean(unlist(t2[, 4])),
+                    mean(unlist(t3[, 4])), mean(unlist(t4[, 4])))
+media <- rename(media, "2010" = "mean.unlist.t1...4...",
+                "2015" = "mean.unlist.t2...4...",
+                "2020" = "mean.unlist.t3...4...",
+                "2025" = "mean.unlist.t4...4...")
+media <- signif(media, digits = 3)
+
+mediana <- data.frame(median(unlist(t1[, 4])), median(unlist(t2[, 4])),
+                    median(unlist(t3[, 4])), median(unlist(t4[, 4])))
+mediana <- rename(mediana, "2010" = "median.unlist.t1...4...",
+                  "2015" = "median.unlist.t2...4...",
+                  "2020" = "median.unlist.t3...4...",
+                  "2025" = "median.unlist.t4...4...")
+mediana <- signif(mediana, digits = 3)
+
+desvio <- data.frame(sd(unlist(t1[, 4])), sd(unlist(t2[, 4])),
+                    sd(unlist(t3[, 4])), sd(unlist(t4[, 4])))
+desvio <- rename(desvio, "2010" = "sd.unlist.t1...4...",
+                 "2015" = "sd.unlist.t2...4...",
+                 "2020" = "sd.unlist.t3...4...",
+                 "2025" = "sd.unlist.t4...4...")
+desvio <- signif(desvio, digits = 2)
+
+graf <- data.frame(Anos, t(media), t(mediana), t(desvio))
+graf <- rename(graf, "Ano da pesquisa" = "Anos", "Média" = "t.media.",
+               Mediana = "t.mediana.", "Desvio padrão" = "t.desvio.")
+
+gt(graf, auto_align = FALSE) |>
+  tab_header(
+    title = md("Distribuição da expectativa de vida mundial")
+  ) |>
+  tab_footnote(
+    "Dados obtidos no site da ONU"
+) -> graf.gt
+```
+```{r}
+media.2 <- data.frame(mean(unlist(t1[, 3])), mean(unlist(t2[, 3])),
+                      mean(unlist(t3[, 3])), mean(unlist(t4[, 3])))
+media.2 <- rename(media.2, "2010" = "mean.unlist.t1...3...",
+                  "2015" = "mean.unlist.t2...3...",
+                  "2020" = "mean.unlist.t3...3...",
+                  "2025" = "mean.unlist.t4...3...")
+media.2 <- signif(media.2, digits = 3)
+
+mediana.2 <- data.frame(median(unlist(t1[, 3])), median(unlist(t2[, 3])),
+                        median(unlist(t3[, 3])), median(unlist(t4[, 3])))
+mediana.2 <- rename(mediana.2, "2010" = "median.unlist.t1...3...",
+                    "2015" = "median.unlist.t2...3...",
+                    "2020" = "median.unlist.t3...3...",
+                    "2025" = "median.unlist.t4...3...")
+mediana.2 <- signif(mediana.2, digits = 3)
+
+desvio.2 <- data.frame(sd(unlist(t1[, 3])), sd(unlist(t2[, 3])),
+                       sd(unlist(t3[, 3])), sd(unlist(t4[, 3])))
+desvio.2 <- rename(desvio.2, "2010" = "sd.unlist.t1...3...",
+                   "2015" = "sd.unlist.t2...3...",
+                   "2020" = "sd.unlist.t3...3...",
+                   "2025" = "sd.unlist.t4...3...")
+desvio.2 <- signif(desvio.2, digits = 2)
+
+graf.2 <- data.frame(Anos, t(media.2), t(mediana.2), t(desvio.2))
+graf.2 <- rename(graf.2, "Ano da pesquisa" = "Anos", "Média" = "t.media.2.",
+                 Mediana = "t.mediana.2.", "Desvio padrão" = "t.desvio.2.")
+
+gt(graf.2, auto_align = FALSE) |>
+  tab_header(
+    title = md("Distribuição da taxa de fertilidade mundial")
+  ) |>
+  tab_footnote(
+    "Dados obtidos no site da ONU"
+) -> graf.2gt
+```
+
+# INCOMPLETA - FAZER ATÉ DOMINGO
 
 ## As duas bases de dados usadas
 
-Sobre os dados populacionais
-
+:::::: columns
+::: {.column width="45%"}
 ```{r}
-
+( graf.gt )
 ```
+:::
 
-Sobre os dados obtidos no Banco Mundial
+::: {.column width="10%"}
+:::
 
+::: {.column width="45%"}
 ```{r}
-
+( graf.2gt )
 ```
+:::
+::::::
+
+::: {style="font-size: 0.6em"}
+-   A expectativa de vida aumenta e a taxa de fertilidade diminui durante o período estudado.
+:::
 
 ::: {style="font-size: 0.8em"}
 # Análise da taxa de fertilidade global nos anos de 2010, 2015, 2020 e 2025
@@ -153,7 +237,7 @@ ggplotly(linha)
 
 ## 
 
-![](C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png)
+![](C:/Users/Pedro/Minhas%20coisas/Meus%20documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png)
 
 ::: {style="font-size: 0.6em"}
 -   Representação dos 10 países mais ricos e mais pobres no ano de 2025, que são os mesmos utilizados no gráfico anterior.
@@ -191,7 +275,12 @@ Isso é uma grande conquista quando comparamos à 2010, quando a mediana para to
 
 ## Fontes dos dados
 
--   [Site do Banco Mundial](https://datacatalog.worldbank.org/search/dataset/0037798/global-economic-monitor) Onde os dados do PIB foram adquiridos.
+-   [Site do Banco Mundial](https://datacatalog.worldbank.org/search/dataset/0037798/global-economic-monitor) - Onde os dados do PIB foram adquiridos.
 
--   [Site das Nações Unidas](https://data.un.org/) Onde os dados da taxa de crescimento e a taxa de fertilidade foram adquiridos.
+-   [Site das Nações Unidas](https://data.un.org/) - Onde os dados da taxa de crescimento e a taxa de fertilidade foram adquiridos.
 
+# REMOVER
+
+## remover
+
+title-slide-attributes: data-background-image: (C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png) data-background-size: cover data-background-opacity: "0.3"

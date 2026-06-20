@@ -1,5 +1,5 @@
 ---
-title: "Relatório"
+title: "Análise exploratória de dados da relação entre o PIB e  os dados populacionais de um país"
 author: "Pedro Guimarães"
 format:
   html:
@@ -16,7 +16,6 @@ lang: pt
 library(tidyverse)
 library(ggthemes)
 library(plotly)
-library(skimr)
 library(gt)
 ```
 ```{r}
@@ -55,7 +54,7 @@ ggplot(
 setwd("C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados")
 tabela <- readRDS("tabelafinal.rds")
 
-tabela <- tabela[, -4:-6]
+tabela <- tabela[, -6][, -4][, -2]
 t.tipo <- c(rep("Países Ricos", 28),
              rep("Países Emergentes", 28),
              rep("Países Pobres", 28))
@@ -147,25 +146,93 @@ desvio <- signif(desvio, digits = 2)
 graf <- data.frame(Anos, t(media), t(mediana), t(desvio))
 graf <- rename(graf, "Ano da pesquisa" = "Anos", "Média" = "t.media.",
                Mediana = "t.mediana.", "Desvio padrão" = "t.desvio.")
+
+gt(graf, auto_align = FALSE) |>
+  tab_header(
+    title = md("Distribuição da expectativa de vida mundial")
+  ) |>
+  tab_footnote(
+    "Dados obtidos no site da ONU"
+) -> graf.gt
+```
+```{r}
+media.2 <- data.frame(mean(unlist(t1[, 3])), mean(unlist(t2[, 3])),
+                      mean(unlist(t3[, 3])), mean(unlist(t4[, 3])))
+media.2 <- rename(media.2, "2010" = "mean.unlist.t1...3...",
+                  "2015" = "mean.unlist.t2...3...",
+                  "2020" = "mean.unlist.t3...3...",
+                  "2025" = "mean.unlist.t4...3...")
+media.2 <- signif(media.2, digits = 3)
+
+mediana.2 <- data.frame(median(unlist(t1[, 3])), median(unlist(t2[, 3])),
+                        median(unlist(t3[, 3])), median(unlist(t4[, 3])))
+mediana.2 <- rename(mediana.2, "2010" = "median.unlist.t1...3...",
+                    "2015" = "median.unlist.t2...3...",
+                    "2020" = "median.unlist.t3...3...",
+                    "2025" = "median.unlist.t4...3...")
+mediana.2 <- signif(mediana.2, digits = 3)
+
+desvio.2 <- data.frame(sd(unlist(t1[, 3])), sd(unlist(t2[, 3])),
+                       sd(unlist(t3[, 3])), sd(unlist(t4[, 3])))
+desvio.2 <- rename(desvio.2, "2010" = "sd.unlist.t1...3...",
+                   "2015" = "sd.unlist.t2...3...",
+                   "2020" = "sd.unlist.t3...3...",
+                   "2025" = "sd.unlist.t4...3...")
+desvio.2 <- signif(desvio.2, digits = 2)
+
+graf.2 <- data.frame(Anos, t(media.2), t(mediana.2), t(desvio.2))
+graf.2 <- rename(graf.2, "Ano da pesquisa" = "Anos", "Média" = "t.media.2.",
+                 Mediana = "t.mediana.2.", "Desvio padrão" = "t.desvio.2.")
+
+gt(graf.2, auto_align = FALSE) |>
+  tab_header(
+    title = md("Distribuição da taxa de fertilidade mundial")
+  ) |>
+  tab_footnote(
+    "Dados obtidos no site da ONU"
+) -> graf.2gt
 ```
 
+# Descrição do estudo realizado
 
-# Análise exploratória de dados sobre a relação entre o PIB de um país e dados populacionais
+Durante essa análise exploratória, dois casos serão estudados, um deles relacionando a taxa de fertilidade com o PIB para os 10 países mais ricos e mais pobres para cada um dos anos do estudo, que são 2010, 2015, 2020 e 2025.
+
+O objetivo desse caso é documentar uma correlação entre o PIB de um país afetar negativamente sua taxa de fertilidade, e também que a cada ano que passa, uma quantidade menor de pessoas nascem no mundo.
+
+Também será feita uma comparação da expectativa de vida nos anos de 2010 e 2025 para três divisões dos países estudados.
+
+Tal comparação visa relacionar um maior PIB com maior expectativa de vida, e também que em comparação com 2010, 2025 tem uma maior expectativa de vida para cada um dos grupos de países.
+
 
 ## Distribuição descritiva dos dados
 
-dados do boxplot para cada um dos 4 anos
-
+:::::: columns
+::: {.column width="45%"}
 ```{r}
-gt(graf)
+graf.gt
 ```
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="45%"}
+```{r}
+graf.2gt
+```
+:::
+::::::
+
+-   A expectativa de vida aumenta e a taxa de fertilidade diminui durante o período estudado;
+
+-   Outros gráficos foram feitos para melhor organizar os dados dos gráficos acima.
 
 
 ## Comparação entre a taxa de fertilidade dos países
 
 Os países mais ricos e mais pobres nesse gráfico foram definido como os 10 mais ricos e 10 mais pobres da base de dados, como está demonstrado no mapa do ano de 2025.
 
-![](C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png)
+![](C:/Users/Pedro/Minhas%20coisas/Meus%20documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png)
 
 ```{r}
 ggplotly(linha)
@@ -179,11 +246,18 @@ ggplotly(linha)
 
 -   A taxa de fertilidade em 2025 era igual á 1.7, indicando diminuição na população mundial no futuro.
 
-### 
+
+### Conclusões
+
+O PIB de um país tem relação com sua taxa de fertilidade, com países mais ricos tendendo a ter menor taxa de fertilidade quando comparados à países mais pobres.
+
+A taxa de fertilidade global, que era próxima ao nível de reposição em 2010, caiu para 1.7 em 2025, indicando que nos próximos 30 anos grande diminuição da população global acontecerá, algo que afetará mais os países mais ricos, que tem sua taxa de fertilidade em 1.4.
+
 
 ## Comparação da expectativa de vida dos países
 
 As faixas de países ricos, emergentes e pobres foram definidas como o primeiro, segundo e terceiro terço dos países quanto ao PIB bruto em cada um dos anos.
+
 
 ### Expectativa de vida no ano de 2010
 
@@ -193,6 +267,7 @@ ggplotly(box.1)
 
 -   Somente os países mais ricos tem uma mediana de sua expectativa de vida perto de 80 anos;
 -   Mediana geral menor do que 75 anos.
+
 
 ### Expectativa de vida no ano de 2025
 
@@ -204,6 +279,7 @@ ggplotly(box.4)
 -   A mediana para os países mais ricos é de 82 anos, 2 a mais quando comparada com 2010;
 -   A maioria dos países tem sua expectativa de vida maior do que 77 anos.
 
+
 ### Conclusões
 
 -   O PIB de um país tem correlação positiva com sua expectativa de vida;
@@ -212,8 +288,23 @@ ggplotly(box.4)
 
 O último ponto é uma grande conquista, pelo motivo de que isso demonstra melhora nas condições de vida, principalmente nos países mais pobres, que aumentaram sua taxa em 3.5 anos, o maior aumento dos três grupos.
 
+
 ## Fontes dos dados
 
--   [Site do Banco Mundial](https://datacatalog.worldbank.org/search/dataset/0037798/global-economic-monitor) Onde os dados do PIB foram adquiridos.
+-   [Site do Banco Mundial](https://datacatalog.worldbank.org/search/dataset/0037798/global-economic-monitor) - Onde os dados do PIB foram adquiridos.
 
--   [Site das Nações Unidas](https://data.un.org/) Onde os dados da taxa de crescimento e a taxa de fertilidade foram adquiridos.
+-   [Site das Nações Unidas](https://data.un.org/) - Onde os dados da taxa de crescimento e a taxa de fertilidade foram adquiridos.
+
+-   [MapChart](https://www.mapchart.net/index.html) - Site usado para criar o mapa customizado que foi usado.
+
+-   Pacotes usados na computação e visualização dos dados utilizados:
+
+1.  [tidyverse](https://tidyverse.tidyverse.org/) - Junção de vários pacotes, sendo o mais usado nesse documento o `ggplot`, função para gerar gráficos.
+
+2.  [ggthemes](https://r-graph-gallery.com/package/ggthemes.html) - Complemento para adicionar temas em gráficos.
+
+3.  [plotly](https://plotly.com/r/) - Usado para transormar tabelas estáticas em interativas. 
+
+4.  [gt](https://gt.rstudio.com/) - Usado para criar tabelas.
+
+
