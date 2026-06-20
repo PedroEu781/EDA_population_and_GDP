@@ -51,7 +51,7 @@ ggplot(
 setwd("C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados")
 tabela <- readRDS("tabelafinal.rds")
 
-tabela <- tabela[, -4:-6]
+tabela <- tabela[, -6][, -4][, -2]
 t.tipo <- c(rep("Países Ricos", 28),
              rep("Países Emergentes", 28),
              rep("Países Pobres", 28))
@@ -275,12 +275,20 @@ Isso é uma grande conquista quando comparamos à 2010, quando a mediana para to
 
 ## Fontes dos dados
 
+::: {style="font-size: 0.7em"}
 -   [Site do Banco Mundial](https://datacatalog.worldbank.org/search/dataset/0037798/global-economic-monitor) - Onde os dados do PIB foram adquiridos.
 
 -   [Site das Nações Unidas](https://data.un.org/) - Onde os dados da taxa de crescimento e a taxa de fertilidade foram adquiridos.
 
-# REMOVER
+-   [MapChart](https://www.mapchart.net/index.html) - Site usado para criar o mapa customizado que foi usado.
 
-## remover
+-   Pacotes usados na computação e visualização dos dados utilizados:
 
-title-slide-attributes: data-background-image: (C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png) data-background-size: cover data-background-opacity: "0.3"
+1.  [tidyverse](https://tidyverse.tidyverse.org/) - Junção de vários pacotes, sendo o mais usado nesse documento o `ggplot`, função para gerar gráficos.
+
+2.  [ggthemes](https://r-graph-gallery.com/package/ggthemes.html) - Complemento para adicionar temas em gráficos.
+
+3.  [plotly](https://plotly.com/r/) - Usado para transormar tabelas estáticas em interativas. 
+
+4.  [gt](https://gt.rstudio.com/) - Usado para criar tabelas.
+:::
