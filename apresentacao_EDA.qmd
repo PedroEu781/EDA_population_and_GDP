@@ -192,25 +192,42 @@ gt(graf.2, auto_align = FALSE) |>
 
 ## As duas bases de dados usadas
 
+ㅤ
+ㅤ
+ㅤ
+ㅤ
+
+::: {style="transform: scale(1.5)"}
 :::::: columns
-::: {.column width="47%"}
+::: {.column width="49%"}
 ```{r}
 ( graf.gt )
 ```
 :::
 
-::: {.column width="6%"}
+::: {.column width="2%"}
 :::
 
-::: {.column width="47%"}
+::: {.column width="49%"}
 ```{r}
 ( graf.2gt )
 ```
 :::
 ::::::
+:::
 
-::: {style="font-size: 0.6em"}
--   A expectativa de vida aumenta e a taxa de fertilidade diminui durante o período estudado.
+::: {style="font-size: 0.8em"}
+.
+.
+.
+.
+ㅤ
+ㅤ
+
+
+-   A expectativa de vida aumenta em 2.7 anos;
+
+-   A taxa de fertilidade diminui em 0.34 filhos por mulher.
 :::
 
 ::: {style="font-size: 0.8em"}
@@ -291,3 +308,6 @@ Isso é uma grande conquista quando comparamos à 2010, quando a mediana para to
 
 4.  [gt](https://gt.rstudio.com/) - Usado para criar tabelas.
 :::
+
+
+# Obrigado pela atenção!
