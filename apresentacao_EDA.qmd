@@ -197,7 +197,7 @@ gt(graf.2, auto_align = FALSE) |>
 ㅤ
 ㅤ
 
-::: {style="transform: scale(1.5)"}
+::: {style="transform: scale(1.3)"}
 :::::: columns
 ::: {.column width="49%"}
 ```{r}
@@ -217,10 +217,6 @@ gt(graf.2, auto_align = FALSE) |>
 :::
 
 ::: {style="font-size: 0.8em"}
-.
-.
-.
-.
 ㅤ
 ㅤ
 
