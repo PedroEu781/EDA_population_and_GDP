@@ -190,21 +190,19 @@ gt(graf.2, auto_align = FALSE) |>
 ) -> graf.2gt
 ```
 
-# INCOMPLETA - FAZER ATÉ DOMINGO
-
 ## As duas bases de dados usadas
 
 :::::: columns
-::: {.column width="45%"}
+::: {.column width="47%"}
 ```{r}
 ( graf.gt )
 ```
 :::
 
-::: {.column width="10%"}
+::: {.column width="6%"}
 :::
 
-::: {.column width="45%"}
+::: {.column width="47%"}
 ```{r}
 ( graf.2gt )
 ```
@@ -281,6 +279,7 @@ Isso é uma grande conquista quando comparamos à 2010, quando a mediana para to
 -   [Site das Nações Unidas](https://data.un.org/) - Onde os dados da taxa de crescimento e a taxa de fertilidade foram adquiridos.
 
 -   [MapChart](https://www.mapchart.net/index.html) - Site usado para criar o mapa customizado que foi usado.
+
 
 -   Pacotes usados na computação e visualização dos dados utilizados:
 
