@@ -195,16 +195,25 @@ gt(graf.2, auto_align = FALSE) |>
 
 # Descrição do estudo realizado
 
-Durante essa análise exploratória, dois casos serão estudados, um deles relacionando a taxa de fertilidade com o PIB para os 10 países mais ricos e mais pobres para cada um dos anos do estudo, que são 2010, 2015, 2020 e 2025.
+  Durante essa análise exploratória, dois casos serão estudados, um deles relacionando a taxa de fertilidade com o PIB para os 10 países mais ricos e mais pobres para cada um dos anos do estudo, que são 2010, 2015, 2020 e 2025.
 
-O objetivo desse caso é documentar uma correlação entre o PIB de um país afetar negativamente sua taxa de fertilidade, e também que a cada ano que passa, uma quantidade menor de pessoas nascem no mundo.
+  O objetivo desse caso é documentar uma relação entre o PIB de um país afetar negativamente sua taxa de fertilidade, e também que a cada ano que passa, uma quantidade menor de pessoas nascem no mundo.
 
-Também será feita uma comparação da expectativa de vida nos anos de 2010 e 2025 para três divisões dos países estudados.
+  Também será feita uma comparação da expectativa de vida nos anos de 2010 e 2025 para três divisões arbitrárias nos países estudados.
 
-Tal comparação visa relacionar um maior PIB com maior expectativa de vida, e também que em comparação com 2010, 2025 tem uma maior expectativa de vida para cada um dos grupos de países.
+  Tal comparação visa relacionar um maior PIB com maior expectativa de vida, e também que em comparação com 2010, 2025 tem uma maior expectativa de vida para cada um dos grupos de países.
 
 
 ## Distribuição descritiva dos dados
+
+  O primeiro gráfico representa a expectativa de vida mundial, e como pode ser observado, ela aumenta de forma significativa durante os anos observados, e também seu desvio padrão diminui, o que significa que há maior concentração das expectativas de vida de todos os países em torno da mediana da distribuição.
+
+
+  O segundo gráfico demonstra a taxa de fertilidade global, é visível que sua média e seu desvio padrão diminuiram, isso quer dizer que a cada ano que passa, pessoas de todos os países tem cada vez menos filhos, e isso pode causar em sérios problemas econômicos relacionados à falta de mercados consumidores em países desenvolvidos e à falta de mão de obra em países mais pobres.
+
+  Informações relevantes sobre a taxa de fertilidade, são que para a população de um país continuar a mesma, sua taxa de fertilidade precisa se aproximar de 2.1 filhos por mulher em idade fértil, que era a taxa de fertilidade global em 2010.
+
+  Contudo, devido à melhoras nas condições de vida, mulheres estão tendo cada vez menos filhos, e também pessoas estão vivendo mais. Isso teria um efeito de que no futuro, a população mundial se tornará majoritariamente idosa e sem uma população economicamente ativa suficiente para sustentar a economia do globo.
 
 :::::: columns
 ::: {.column width="45%"}
@@ -232,7 +241,7 @@ graf.2gt
 
 Os países mais ricos e mais pobres nesse gráfico foram definido como os 10 mais ricos e 10 mais pobres da base de dados, como está demonstrado no mapa do ano de 2025.
 
-![](C:/Users/Pedro/Minhas%20coisas/Meus%20documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png)
+![](C:/Users/Pedro/Minhas coisas/Meus documentos/2026/UFLA/ges139/projeto/EDA_population_and_GDP/dados/map_countries.png)
 
 ```{r}
 ggplotly(linha)
